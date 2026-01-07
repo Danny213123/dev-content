@@ -91,22 +91,14 @@ jobs:
           VALIDATION_ERRORS=""
           VALIDATION_PASSED="true"
           
-          # Extract 60-second confirmation
-          SIXTY_SEC_CONFIRMATION=$(extract_field "60-Second Wait Confirmation")
+          # Extract Double Check confirmation
           DOUBLE_CHECK=$(extract_field "Double Check Confirmation")
           
-          echo "60-Second Confirmation: $SIXTY_SEC_CONFIRMATION"
           echo "Double Check: $DOUBLE_CHECK"
-          
-          # Validate 60-second confirmation format
-          if [[ ! "$SIXTY_SEC_CONFIRMATION" =~ ^CONFIRMED-[0-5]?[0-9]$ ]]; then
-            VALIDATION_ERRORS+="- ⏱️ Invalid 60-second confirmation. Please wait and type: CONFIRMED-[minute]\n"
-            VALIDATION_PASSED="false"
-          fi
           
           # Validate Double Check checkbox
           if [[ ! "$DOUBLE_CHECK" =~ "X" ]] && [[ ! "$DOUBLE_CHECK" =~ "x" ]] && [[ ! "$DOUBLE_CHECK" =~ "checked" ]]; then
-            VALIDATION_ERRORS+="- ☑️ You must check the 'Double Check Confirmation' checkbox\n"
+            VALIDATION_ERRORS+="- You must check the 'Double Check Confirmation' checkbox\n"
             VALIDATION_PASSED="false"
           fi
           
@@ -127,29 +119,29 @@ jobs:
             IFS=':' read -r field_var field_name <<< "$field_info"
             field_value="${!field_var}"
             if contains_url "$field_value"; then
-              VALIDATION_ERRORS+="- 🔗 Field '$field_name' should not contain URLs/links\n"
+              VALIDATION_ERRORS+="- Field '$field_name' should not contain URLs/links\n"
               VALIDATION_PASSED="false"
             fi
           done
           
           # Validate character length limits
           if [ ${#BLOG_FILE_PATH} -gt 30 ]; then
-            VALIDATION_ERRORS+="- 📏 File Path Name exceeds 30 characters (currently ${#BLOG_FILE_PATH})\n"
+            VALIDATION_ERRORS+="- File Path Name exceeds 30 characters (currently ${#BLOG_FILE_PATH})\n"
             VALIDATION_PASSED="false"
           fi
           
           if [ ${#BLOG_DESCRIPTION} -gt 150 ]; then
-            VALIDATION_ERRORS+="- 📏 Description exceeds 150 characters (currently ${#BLOG_DESCRIPTION})\n"
+            VALIDATION_ERRORS+="- Description exceeds 150 characters (currently ${#BLOG_DESCRIPTION})\n"
             VALIDATION_PASSED="false"
           fi
           
           if [ ${#BLOG_AUDIENCE} -gt 100 ]; then
-            VALIDATION_ERRORS+="- 📏 Audience exceeds 100 characters (currently ${#BLOG_AUDIENCE})\n"
+            VALIDATION_ERRORS+="- Audience exceeds 100 characters (currently ${#BLOG_AUDIENCE})\n"
             VALIDATION_PASSED="false"
           fi
           
           if [ ${#BLOG_KVP} -gt 200 ]; then
-            VALIDATION_ERRORS+="- 📏 Key Value Proposition exceeds 200 characters (currently ${#BLOG_KVP})\n"
+            VALIDATION_ERRORS+="- Key Value Proposition exceeds 200 characters (currently ${#BLOG_KVP})\n"
             VALIDATION_PASSED="false"
           fi
           

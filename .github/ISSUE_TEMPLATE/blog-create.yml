@@ -29,7 +29,7 @@ body:
         > **WARNING**: The directory name must be in lowercase and contain no spaces or special characters. Use hyphens to separate words.
         > **EXAMPLE**: If your blog is about "AMD ROCm", the directory name could be "amd-rocm". Please keep the directory name to a maximum of three words separated by a hyphen.
 
-        > ⛔ **VALIDATION**: Maximum 30 characters, no URLs/links allowed.
+        > **VALIDATION**: Maximum 30 characters, no URLs/links allowed.
       placeholder: |
         word1-word2-word3 (max 30 chars, no URLs)
     validations:
@@ -41,7 +41,7 @@ body:
       label: "Author"
       description: |
         Please list any author(s) of this blog.
-        > ⛔ **VALIDATION**: Names only - no URLs/links allowed.
+        > **VALIDATION**: Names only - no URLs/links allowed.
       placeholder: |
         Separate Authors with commas, ex. John Smith, John Doe, Danny Guan
     validations:
@@ -122,7 +122,7 @@ body:
       label: "Audience"
       description: |
         Describe the target audience(s) for the blog. Used for internal blog communication only.
-        > ⛔ **VALIDATION**: Maximum 100 characters, no URLs/links allowed.
+        > **VALIDATION**: Maximum 100 characters, no URLs/links allowed.
       placeholder: |
         e.g., ML Engineers, Data Scientists (max 100 chars)
     validations:
@@ -134,7 +134,7 @@ body:
       label: "Key Value Proposition"
       description: |
         Describe the key value proposition(s) of the blog. Used for internal blog communication only.
-        > ⛔ **VALIDATION**: Maximum 200 characters, no URLs/links allowed.
+        > **VALIDATION**: Maximum 200 characters, no URLs/links allowed.
       placeholder: |
         e.g., Learn how to optimize ROCm performance (max 200 chars)
     validations:
@@ -146,7 +146,7 @@ body:
       label: "Description"
       description: |
         Enter in the description that best describes your blog. Used as HTML meta data and summary on the ROCm Blogs portal main page.
-        > ⛔ **VALIDATION**: Maximum 150 characters, no URLs/links allowed.
+        > **VALIDATION**: Maximum 150 characters, no URLs/links allowed.
       placeholder: |
         Keep description below 150 characters, no URLs
     validations:
@@ -158,7 +158,7 @@ body:
       label: "Keywords"
       description: |
         Enter in the keyword(s) of the blog separated by commas. Used for HTML meta data.
-        > ⛔ **VALIDATION**: Keywords only - no URLs/links allowed.
+        > **VALIDATION**: Keywords only - no URLs/links allowed.
       placeholder: |
         e.g., ROCm, GPU, Machine Learning, AI (no URLs)
     validations:
@@ -263,16 +263,12 @@ body:
     attributes:
       value: |
         ---
-        ## ⚠️ Final Verification Required
+        ## Final Verification Required
 
-        Before submitting, you **MUST** complete the following steps:
-
-        1. ✅ **Double-check all inputs above** for accuracy and completeness
-        2. ⏱️ **Wait 60 seconds** after checking the box below before submitting
-        3. 📝 **Type the confirmation phrase** to prove you've waited
+        Before submitting, please **double-check all inputs above** for accuracy and completeness.
 
         > [!CAUTION]
-        > Submissions without proper confirmation will be **automatically rejected**.
+        > Submissions with incorrect or incomplete information will be **rejected**.
     validations:
       required: false
   - type: checkboxes
@@ -288,18 +284,4 @@ body:
       options:
         - label: "I have double-checked all my inputs and confirm they are correct"
           required: true
-  - type: input
-    id: sixty_second_confirmation
-    attributes:
-      label: "60-Second Wait Confirmation"
-      description: |
-        After checking the box above, **wait 60 seconds**, then type exactly: `CONFIRMED-[current minute]`
-        
-        For example, if it's 3:45 PM when you're ready to submit, type: `CONFIRMED-45`
-        
-        > ⏱️ This ensures you've taken time to review your submission carefully.
-      placeholder: |
-        CONFIRMED-[minute] (e.g., CONFIRMED-45)
-    validations:
-      required: true
-      pattern: "^CONFIRMED-[0-5]?[0-9]$"
+
