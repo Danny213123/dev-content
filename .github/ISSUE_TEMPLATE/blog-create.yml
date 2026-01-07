@@ -1,0 +1,305 @@
+name: "Create a new blog post"
+description: "Submit this form to automatically create a new blog post"
+title: "[New Post] "
+labels: ["Blog Creation"]
+body:
+  - type: markdown
+    id: markdown_with_multiline_content
+    attributes:
+      value: |
+        ## Thanks for starting a new blog!
+        When you complete the fields below, please ensure that your blog, and the text you provide in the fields, strongly aligns with ROCm Blogs' mission: quickly disseminating actionable, breaking technical news that reflects the capabilities and strengths of AMD's technology. Use an informal, call-to-action, active voice that speaks the user's language, and provide accessible, actionable, cutting-edge information on our technology.
+
+        The title of the issue will be the title of the new blog. Choose a blog title that is concise, accessible, and informal as possible.
+
+        > **IMPORTANT NOTE:** All fields in this form are required to successfully create a blog post. Missing information will cause the automated system to reject your submission. Please complete all sections thoroughly and double check your responses.
+        
+        > **TIP:** If your blog post is rejected, simply edit the issue to add any missing information, and the system will automatically try again.
+
+    validations:
+      required: false
+  - type: input
+    id: file_path_name
+    attributes:
+      label: "File Path Name"
+      description: |
+        "Please enter the name of your directory name"
+
+        > **IMPORTANT NOTE:** The directory name must be unique and not already exist in the repository. If you are unsure, please check the repository before submitting this form.
+        > **WARNING**: The directory name must be in lowercase and contain no spaces or special characters. Use hyphens to separate words.
+        > **EXAMPLE**: If your blog is about "AMD ROCm", the directory name could be "amd-rocm". Please keep the directory name to a maximum of three words separated by a hyphen.
+
+        > ⛔ **VALIDATION**: Maximum 30 characters, no URLs/links allowed.
+      placeholder: |
+        word1-word2-word3 (max 30 chars, no URLs)
+    validations:
+      required: true
+      pattern: "^(?!.*https?://)(?!.*www\\.)[a-z0-9-]{1,30}$"
+  - type: input
+    id: blog_authors
+    attributes:
+      label: "Author"
+      description: |
+        Please list any author(s) of this blog.
+        > ⛔ **VALIDATION**: Names only - no URLs/links allowed.
+      placeholder: |
+        Separate Authors with commas, ex. John Smith, John Doe, Danny Guan
+    validations:
+      required: true
+      pattern: "^(?!.*https?://)(?!.*www\\.)[^<>]{1,200}$"
+  - type: dropdown
+    id: blog_tags
+    attributes:
+      label: "Tags"
+      multiple: true
+      description: |
+        "Select tag(s) which best fit this blog. You may select multiple tags."
+      options:
+        - Reinforcement Learning
+        - Partner Applications
+        - AI/ML
+        - Scientific Computing
+        - Fine-Tuning
+        - System-Tuning
+        - C++
+        - GenAI
+        - Linear Algebra
+        - Compiler
+        - Hardware
+        - Computer Vision
+        - HPC
+        - Time Series
+        - Installation
+        - JAX
+        - LLM
+        - Memory
+        - Multimodal
+        - OpenMP
+        - Optimization
+        - Performance
+        - Profiling
+        - PyTorch
+        - Serving
+        - Speech
+        - Diffusion Model
+        - TensorFlow
+        - Recommendation Systems
+        - Kubernetes
+    validations:
+      required: true
+  - type: dropdown
+    id: blog_category
+    attributes:
+      label: "Category"
+      description: |
+        Enter in the category of the blog, please choose a single option from the approved category list.
+        - **Applications & Models** - Blogs related to Applications and/or models.
+        - **Ecosystems and Partners** - Blogs related to specific partner or greater ecosystem collaborations.
+        - **Software Tools & Optimizations** - Blogs related to Software tools and/or optimizations.
+      options:
+        - Applications & models
+        - Ecosystems and Partners
+        - Software tools & optimizations
+    validations:
+      required: true
+  - type: dropdown
+    id: blog_market_vertical
+    attributes:
+      label: "Market Vertical"
+      multiple: true
+      description: "Select the market vertical(s) that best suits this blog. You may select multiple tags."
+      options:
+        - AI
+        - HPC
+        - Developers
+        - Systems
+        - Data Science
+    validations:
+      required: true
+  - type: input
+    id: blog_target_audience
+    attributes:
+      label: "Audience"
+      description: |
+        Describe the target audience(s) for the blog. Used for internal blog communication only.
+        > ⛔ **VALIDATION**: Maximum 100 characters, no URLs/links allowed.
+      placeholder: |
+        e.g., ML Engineers, Data Scientists (max 100 chars)
+    validations:
+      required: true
+      pattern: "^(?!.*https?://)(?!.*www\\.)[^<>]{1,100}$"
+  - type: input
+    id: blog_key_value_proposition
+    attributes:
+      label: "Key Value Proposition"
+      description: |
+        Describe the key value proposition(s) of the blog. Used for internal blog communication only.
+        > ⛔ **VALIDATION**: Maximum 200 characters, no URLs/links allowed.
+      placeholder: |
+        e.g., Learn how to optimize ROCm performance (max 200 chars)
+    validations:
+      required: true
+      pattern: "^(?!.*https?://)(?!.*www\\.)[^<>]{1,200}$"
+  - type: input
+    id: blog_description
+    attributes:
+      label: "Description"
+      description: |
+        Enter in the description that best describes your blog. Used as HTML meta data and summary on the ROCm Blogs portal main page.
+        > ⛔ **VALIDATION**: Maximum 150 characters, no URLs/links allowed.
+      placeholder: |
+        Keep description below 150 characters, no URLs
+    validations:
+      required: true
+      pattern: "^(?!.*https?://)(?!.*www\\.)[^<>]{1,150}$"
+  - type: input
+    id: blog_keywords
+    attributes:
+      label: "Keywords"
+      description: |
+        Enter in the keyword(s) of the blog separated by commas. Used for HTML meta data.
+        > ⛔ **VALIDATION**: Keywords only - no URLs/links allowed.
+      placeholder: |
+        e.g., ROCm, GPU, Machine Learning, AI (no URLs)
+    validations:
+      required: true
+      pattern: "^(?!.*https?://)(?!.*www\\.)[a-zA-Z0-9,\\s-]{1,300}$"
+  - type: dropdown
+    id: blog_amd_technical_blog_type
+    attributes:
+      label: "AMD Technical Blog Type"
+      description: "Select the technical blog type for this blog, please choose a single option from the list."
+      options:
+        - Applications and Models
+        - Ecosystem and Partners
+        - Tools, Features, and Optimizations
+        - Benchmarks and Testing
+    validations:
+      required: true
+  - type: dropdown
+    id: amd_blog_hardware_platforms
+    attributes:
+      label: "AMD Hardware Deployment Platforms"
+      multiple: true
+      description: "Select hardware deployment target(s). You may select multiple tags."
+      options:
+        - EPYC Server Processors
+        - Instinct GPUs
+        - Radeon Graphics
+        - Ryzen Processors
+        - Versal & Zynq Adaptive SoCs
+        - Virtex, Kintex & Artix FPGAs
+        - Alveo Adaptive SoC Accelerators
+        - Kria SOMs
+        - Pensando Network Infrastructure
+    validations:
+      required: true
+  - type: dropdown
+    id: blog_amd_applications
+    attributes:
+      label: "AMD Applications"
+      description: "Select application(s) for this blog. You may select multiple tags."
+      multiple: true
+      options:
+        - AI Inference
+        - AI Training
+        - Computer Vision
+        - Content Creation / Rendering
+        - Conversational AI
+        - Data Science
+        - Design, Simulation & Modeling
+        - Deploying AI at Scale
+        - Edge Computing
+        - Generative AI
+        - Industrial / Robotics
+        - Predictive Analytics
+        - Video Analytics
+    validations:
+      required: true
+  - type: dropdown
+    id: amd_blog_development_tools
+    attributes:
+      label: "AMD Software Deployment Platforms"
+      description: "Select software deployment target(s). You may select multiple tags."
+      multiple: true
+      options:
+        - Vitis AI Software
+        - ROCm Software
+        - Ryzen AI Software
+        - ZenDNN Library
+        - Vitis Software
+        - Vivado Software
+        - Zen Software Studio
+        - Radeon Pro Render
+        - Open-Source Tools
+    validations:
+      required: true
+  - type: dropdown
+    id: amd_blog_topic_categories
+    attributes:
+      label: "AMD Blog Topic Categories"
+      description: "Select Blog Topic Category which best fit your blog"
+      multiple: false
+      options:
+        - Adaptive & Embedded Computing
+        - AI & Intelligent Systems
+        - Enterprise & Data Center Trends
+        - HPC & Scientific Computing
+        - Industry Applications & Use Cases
+        - Software & Ecosystem
+    validations:
+      required: true
+  - type: input
+    id: jira_ticket
+    attributes:
+      label: "Jira Ticket"
+      description: |
+        "Enter in the full link of the Jira ticket for this blog. Skip to file later but publication requires a ticket."
+        **Enter in N/A if not-applicable**
+      placeholder: |
+        Link to Jira Ticket for this blog. Enter in N/A if not-applicable.
+  - type: markdown
+    id: double_check_divider
+    attributes:
+      value: |
+        ---
+        ## ⚠️ Final Verification Required
+
+        Before submitting, you **MUST** complete the following steps:
+
+        1. ✅ **Double-check all inputs above** for accuracy and completeness
+        2. ⏱️ **Wait 60 seconds** after checking the box below before submitting
+        3. 📝 **Type the confirmation phrase** to prove you've waited
+
+        > [!CAUTION]
+        > Submissions without proper confirmation will be **automatically rejected**.
+    validations:
+      required: false
+  - type: checkboxes
+    id: double_check_confirmation
+    attributes:
+      label: "Double Check Confirmation"
+      description: |
+        I confirm that I have carefully reviewed ALL fields above for correctness, including:
+        - Correct spelling and formatting of names
+        - No URLs in text-only fields
+        - Appropriate character lengths
+        - Accurate category and tag selections
+      options:
+        - label: "I have double-checked all my inputs and confirm they are correct"
+          required: true
+  - type: input
+    id: sixty_second_confirmation
+    attributes:
+      label: "60-Second Wait Confirmation"
+      description: |
+        After checking the box above, **wait 60 seconds**, then type exactly: `CONFIRMED-[current minute]`
+        
+        For example, if it's 3:45 PM when you're ready to submit, type: `CONFIRMED-45`
+        
+        > ⏱️ This ensures you've taken time to review your submission carefully.
+      placeholder: |
+        CONFIRMED-[minute] (e.g., CONFIRMED-45)
+    validations:
+      required: true
+      pattern: "^CONFIRMED-[0-5]?[0-9]$"
